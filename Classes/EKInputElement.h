@@ -16,5 +16,8 @@
 
 
 @interface EKInputElement : EKAdjustCellElement
+{
+    BOOL _dataVaild;
+}
 @property (nonatomic, assign) BOOL dataVaild;
 @end

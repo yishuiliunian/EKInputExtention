@@ -15,6 +15,7 @@
     if (!self) {
         return self;
     }
+    _dataVaild = YES;
     return self;
 }
 

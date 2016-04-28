@@ -17,6 +17,7 @@
     if (!self) {
         return self;
     }
+    _dataVaild = NO;
     return self;
 }
 
@@ -28,9 +29,28 @@
 
 - (void) inputElement:(EKInputElement *)ele dataVaildChanged:(NSNumber *)vaild
 {
-    
+    __block BOOL dataVaild = YES;
+    [_dataController map:^(id e) {
+        if ([e isKindOfClass:[EKInputElement class]]) {
+            EKInputElement* ele = (EKInputElement*)e;
+            dataVaild =  dataVaild && ele.dataVaild;
+        }
+    }];
+    self.dataVaild = dataVaild;
 }
 
+- (void) setDataVaild:(BOOL)dataVaild
+{
+    if (_dataVaild != dataVaild) {
+        _dataVaild = dataVaild;
+        [self dataStatesChanged];
+    }
+}
+
+- (void) dataStatesChanged
+{
+    
+}
 
 - (void) reloadData
 {

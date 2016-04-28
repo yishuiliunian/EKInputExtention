@@ -16,6 +16,7 @@
     if (!self) {
         return self;
     }
+    _dataVaild = NO;
     return self;
 }
 
