@@ -17,10 +17,10 @@
     if (!self) {
         return self;
     }
-    _viewClass = [EKInputTableViewController class];
     return self;
-
 }
+
+
 - (void) loadInputElements
 {
     
@@ -30,6 +30,7 @@
 {
     
 }
+
 
 - (void) reloadData
 {

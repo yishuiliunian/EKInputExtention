@@ -30,13 +30,14 @@
     responser.textFiled.text = _text;
     responser.textFiled.placeholder = _placeHolder;
     responser.textFiled.delegate = self;
+    responser.leftImageView.image = self.leftImage;
 }
 
 - (void) willRegsinHandleResponser:(EKTextFiledCell *)responser
 {
     [super willRegsinHandleResponser:responser];
     [responser.textFiled removeTarget:self action:@selector(textContentChanged:) forControlEvents:UIControlEventEditingChanged];
-    responser.textFiled.delegate = nil;
+    responser.textFiled.delegate = self;
 }
 - (void) didRegsinHandleResponser:(EKTextFiledCell *)responser
 {

@@ -8,7 +8,8 @@
 
 #import <ElementKit/ElementKit.h>
 #import "EKInputElement.h"
-@interface EKInputTableElement : EKTableElement <EKInputElementEvents>
+
+@interface EKInputTableElement : EKAdjustTableElement <EKInputElementEvents>
 /**
  *  加载InputElements
  */
