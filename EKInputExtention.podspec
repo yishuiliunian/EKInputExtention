@@ -38,4 +38,7 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'ElementKit'
   s.dependency 'DZGeometryTools'
+  s.dependency 'SZTextView'
+  s.dependency 'BEMCheckBox'
+  s.dependency 'MD5Digest'
 end
