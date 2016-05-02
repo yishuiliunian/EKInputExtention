@@ -28,7 +28,7 @@
 {
     [super layoutSubviews];
     CGRect contentRect = self.contentView.bounds;
-    contentRect = CGRectCenterSubSize(contentRect, CGSizeMake(30, 20));
+    contentRect = CGRectCenterSubSize(contentRect, CGSizeMake(35, 10));
     
     CGSize imageSize = CGSizeMake(20, 20);
     
@@ -36,7 +36,7 @@
     CGRectDivide(contentRect, &boxRect, &contentRect, imageSize.width, CGRectMinXEdge);
     
     boxRect = CGRectCenter(boxRect, imageSize);
-    contentRect = CGRectShrink(contentRect, 10, CGRectMinXEdge);
+    contentRect = CGRectShrink(contentRect, 15, CGRectMinXEdge);
     
     CGRect rects[2];
     CGRectVerticalSplit(contentRect, &rects, 2, 4);

@@ -12,4 +12,5 @@
 @interface EKInputTextViewElement : EKAdjustCellElement <UITextViewDelegate>
 @property (nonatomic, strong) NSString* text;
 @property (nonatomic, strong) NSString* placeHolder;
+@property (nonatomic, strong) UIFont* textFont;
 @end

@@ -12,6 +12,7 @@
 @class EKUploadImageCell;
 @class EKUploadItemCollectionViewCell;
 @interface EKUploadImageElement : EKAdjustCellElement
+@property (nonatomic, assign) int maxImageCount;
 - (NSArray*) allUploadedImageURLS;
 - (int) numberOfUploadImage;
 - (void) handleUploadAction:(EKUploadImageCell*)cell;

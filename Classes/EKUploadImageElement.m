@@ -29,6 +29,7 @@
     _viewClass = [EKUploadImageCell class];
     _uploadImageCache = [NSMutableDictionary new];
     self.cellHeight = 100;
+    _maxImageCount = 3;
     return self;
 }
 - (EKUploadImageCell*) activeCell
@@ -63,10 +64,6 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
 #pragma mark Image Picker
 - (void) takePicture
 {
-    if (self.numberOfUploadImage>=5) {
-//        MUAlertShowSuccess(@"最多只能上传5张照片");
-        return;
-    }
     UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:kCYPICFromLocal,kCYPICFromCamera, nil];
     [actionSheet showInView:self.hostViewController.view];
 }
@@ -124,7 +121,6 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     [super willBeginHandleResponser:cell];
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     [cell.collectionView reloadData];
-    cell.countLabel.text = [NSString stringWithFormat:@"已上传%d张", self.numberOfUploadImage];
 }
 
 - (void) didBeginHandleResponser:(EKUploadImageCell *)cell

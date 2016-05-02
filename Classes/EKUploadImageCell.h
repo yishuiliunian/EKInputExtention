@@ -11,5 +11,5 @@
 
 @interface EKUploadImageCell : UITableViewCell
 DEFINE_PROPERTY_STRONG(UICollectionView*, collectionView);
-DEFINE_PROPERTY_STRONG_UILabel(countLabel);
+//DEFINE_PROPERTY_STRONG_UILabel(countLabel);
 @end
