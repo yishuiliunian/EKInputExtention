@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import <ElementKit/ElementKit.h>
-#import "DZProgramDefines.h"
+#import "DZProgrameDefines.h"
 #import <SZTextView/SZTextView.h>
 @interface EKInputTextViewCell : EKAdjustTableViewCell
 @property (nonatomic, strong, readonly) SZTextView* textView;

@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import <ElementKit/ElementKit.h>
-#import "DZProgramDefines.h"
+#import "DZProgrameDefines.h"
 #import <BEMCheckBox/BEMCheckBox.h>
 @interface EKCheckBoxCell : UITableViewCell
 @property (nonatomic, strong, readonly) BEMCheckBox* checkBox;

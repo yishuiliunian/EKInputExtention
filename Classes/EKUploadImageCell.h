@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import <ElementKit/ElementKit.h>
-#import "DZProgramDefines.h"
+#import "DZProgrameDefines.h"
 
 @interface EKUploadImageCell : UITableViewCell
 DEFINE_PROPERTY_STRONG(UICollectionView*, collectionView);

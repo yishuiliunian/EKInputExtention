@@ -7,7 +7,7 @@
 //
 
 #import "EKTextFiledCell.h"
-#import "DZProgramDefines.h"
+#import "DZProgrameDefines.h"
 @implementation EKTextFiledCell
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
