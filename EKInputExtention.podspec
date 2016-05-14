@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
+			s
                        DESC
 
   s.homepage         = "https://github.com/<GITHUB_USERNAME>/EKInputExtention"
@@ -41,4 +42,5 @@ Pod::Spec.new do |s|
   s.dependency 'SZTextView'
   s.dependency 'BEMCheckBox'
   s.dependency 'MD5Digest'
+  s.dependency 'DZProgrameDefines'
 end
