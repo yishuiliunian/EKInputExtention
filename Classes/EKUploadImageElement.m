@@ -52,7 +52,15 @@
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     [self takePicture];
 }
+- (UIImage*) cacheImageForURL:(NSString *)url
+{
+    if (!url) {
+        return nil;
+        
+    }
 
+    return _uploadImageCache[url];
+}
 - (void) loadContentForUploadItemCell:(EKUploadItemCollectionViewCell*)cell atIndex:(int)index
 {
     cell.imageView.image = _uploadImageCache[_uploadedImageUrls[index]];

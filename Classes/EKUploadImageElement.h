@@ -14,12 +14,10 @@
 @interface EKUploadImageElement : EKAdjustCellElement
 @property (nonatomic, assign) int maxImageCount;
 - (NSArray*) allUploadedImageURLS;
+- (UIImage*) cacheImageForURL:(NSString*)url;
 - (int) numberOfUploadImage;
 - (void) handleUploadAction:(EKUploadImageCell*)cell;
 - (void) loadContentForUploadItemCell:(EKUploadItemCollectionViewCell*)cell atIndex:(int)index;
-
-
-
 @end
 
 
