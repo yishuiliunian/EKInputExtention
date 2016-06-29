@@ -20,9 +20,23 @@
     return self;
 }
 
+- (instancetype) initWithTitle:(NSString*)title image:(UIImage*)image
+{
+    self = [self init];
+    if (!self) {
+        return self;
+    }
+    _title = title;
+    _image = image;
+    return self;
+}
+
 - (void) willBeginHandleResponser:(EKIMGTextL_RCell*)cell
 {
     [super willBeginHandleResponser:cell];
+    cell.textLabel.text = _title;
+    cell.imageView.image = _image;
+    cell.detailTextLabel.text = _detailText;
 }
 
 - (void) didBeginHandleResponser:(EKIMGTextL_RCell *)cell
