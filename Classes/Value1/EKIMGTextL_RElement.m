@@ -37,11 +37,7 @@
     cell.textLabel.text = _title;
     cell.imageView.image = _image;
     cell.detailTextLabel.text = _detailText;
-    if (self.showRightArrow) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+
 }
 
 - (void) didBeginHandleResponser:(EKIMGTextL_RCell *)cell

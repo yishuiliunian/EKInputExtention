@@ -14,7 +14,7 @@ typedef void(^HandleAction)(void);
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* detailText;
-@property (nonatomic, assign) BOOL showRightArrow;
+
 @property (nonatomic, strong) HandleAction handleAction;
 - (instancetype) initWithTitle:(NSString*)title image:(UIImage*)image;
 
