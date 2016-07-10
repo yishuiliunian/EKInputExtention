@@ -15,7 +15,6 @@ typedef void(^HandleAction)(void);
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* detailText;
 
-@property (nonatomic, strong) HandleAction handleAction;
 - (instancetype) initWithTitle:(NSString*)title image:(UIImage*)image;
 
 @end

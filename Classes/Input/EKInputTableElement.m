@@ -67,6 +67,5 @@
 - (void) didRegsinHandleResponser:(UIResponder *)responser
 {
     [super didRegsinHandleResponser:responser];
-    [self.eventBus removeHandler:self prot:@selector(inputElement:dataVaildChanged:)];
 }
 @end

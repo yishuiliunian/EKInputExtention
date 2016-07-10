@@ -55,10 +55,4 @@
     [super didRegsinHandleResponser:cell];
 }
 
-- (void) handleSelectedInViewController:(UIViewController *)vc
-{
-    if (self.handleAction) {
-        self.handleAction();
-    }
-}
 @end
