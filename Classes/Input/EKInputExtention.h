@@ -14,4 +14,7 @@
 #import "EKIMGTextL_RElement.h"
 #import "EKIMGTextL_RCell.h"
 #import "EKLineViewElement.h"
+#import "EKCenterImageElement.h"
+#import "EKSpaceElement.h"
+#import "EKSingleButtonElement.h"
 #endif /* EKInputExtention_h */
