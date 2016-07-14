@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "EKSingleButtonElement.h"
 #import "EKSingleButtonCell.h"
+
+@interface EKSingleButtonElement ()
+@property (nonatomic, weak, readonly) EKSingleButtonCell* cell;
+@end
+
 @implementation EKSingleButtonElementStatus
 
 - (instancetype) init
@@ -32,32 +37,24 @@
     self.cellHeight = 54;
     return self;
 }
+- (EKSingleButtonCell*) cell
+{
+    return (EKSingleButtonCell*)self.uiEventPool;
+}
 
+- (void) setCurrentStatus:(EKSingleButtonElementStatus *)currentStatus
+{
+    if (_currentStatus != currentStatus) {
+        [self.cell.button removeTarget:_currentStatus.target action:_currentStatus.selector forControlEvents:UIControlEventTouchUpInside];
+        _currentStatus = currentStatus;
+        [self reloadUI];
+    }
+}
 - (void) willBeginHandleResponser:(EKSingleButtonCell*)cell
 {
     [super willBeginHandleResponser:cell];
-    if (self.currentStatus.normalImage) {
-        [cell.button setBackgroundImage:_currentStatus.normalImage forState:UIControlStateNormal];
-    }
-    if (_currentStatus.disableImage) {
-        [cell.button setBackgroundImage:_currentStatus.disableImage forState:UIControlStateDisabled];
-    }
-    
-    if (_currentStatus.highlightImage) {
-        [cell.button setBackgroundImage:_currentStatus.highlightImage forState:UIControlStateHighlighted];
-        [cell.button setBackgroundImage:_currentStatus.highlightImage forState:UIControlStateSelected];
-    }
-    
-    [cell.button setTitle:_currentStatus.title forState:UIControlStateNormal];
-    if (_currentStatus.titleNormalColor) {
-        [cell.button setTitleColor:_currentStatus.titleNormalColor forState:UIControlStateNormal];
-    }
-    
-    if (_currentStatus.border) {
-        cell.button.layer.cornerRadius = 2;
-        cell.button.layer.borderColor = [UIColor blueColor].CGColor;
-        cell.button.layer.borderWidth = 1;
-    }
+    [self.currentStatus.style decorateView:cell.button];
+    [cell.button setTitle:self.currentStatus.title forState:UIControlStateNormal];
 }
 
 - (void) didBeginHandleResponser:(EKSingleButtonCell *)cell
