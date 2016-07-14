@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "EKSingleButtonElement.h"
 #import "EKSingleButtonCell.h"
+@implementation EKSingleButtonElementStatus
+
+- (instancetype) init
+{
+    self = [super init];
+    if (!self) {
+        return self;
+    }
+    return self;
+}
+@end
+
 @implementation EKSingleButtonElement
 - (instancetype) init
 {
@@ -24,28 +36,34 @@
 - (void) willBeginHandleResponser:(EKSingleButtonCell*)cell
 {
     [super willBeginHandleResponser:cell];
-    if (_normalImage) {
-        [cell.button setBackgroundImage:_normalImage forState:UIControlStateNormal];
+    if (self.currentStatus.normalImage) {
+        [cell.button setBackgroundImage:_currentStatus.normalImage forState:UIControlStateNormal];
     }
-    if (_disableImage) {
-        [cell.button setBackgroundImage:_disableImage forState:UIControlStateDisabled];
-    }
-    
-    if (_highlightImage) {
-        [cell.button setBackgroundImage:_highlightImage forState:UIControlStateHighlighted];
-        [cell.button setBackgroundImage:_highlightImage forState:UIControlStateSelected];
+    if (_currentStatus.disableImage) {
+        [cell.button setBackgroundImage:_currentStatus.disableImage forState:UIControlStateDisabled];
     }
     
-    [cell.button setTitle:_title forState:UIControlStateNormal];
-    if (_titleNormalColor) {
-        [cell.button setTitleColor:_titleNormalColor forState:UIControlStateNormal];
+    if (_currentStatus.highlightImage) {
+        [cell.button setBackgroundImage:_currentStatus.highlightImage forState:UIControlStateHighlighted];
+        [cell.button setBackgroundImage:_currentStatus.highlightImage forState:UIControlStateSelected];
+    }
+    
+    [cell.button setTitle:_currentStatus.title forState:UIControlStateNormal];
+    if (_currentStatus.titleNormalColor) {
+        [cell.button setTitleColor:_currentStatus.titleNormalColor forState:UIControlStateNormal];
+    }
+    
+    if (_currentStatus.border) {
+        cell.button.layer.cornerRadius = 2;
+        cell.button.layer.borderColor = [UIColor blueColor].CGColor;
+        cell.button.layer.borderWidth = 1;
     }
 }
 
 - (void) didBeginHandleResponser:(EKSingleButtonCell *)cell
 {
     [super didBeginHandleResponser:cell];
-    [cell.button addTarget:_target action:_selector forControlEvents:UIControlEventTouchUpInside];
+    [cell.button addTarget:_currentStatus.target action:_currentStatus.selector forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) willRegsinHandleResponser:(EKSingleButtonCell *)cell
@@ -56,6 +74,6 @@
 - (void) didRegsinHandleResponser:(EKSingleButtonCell *)cell
 {
     [super didRegsinHandleResponser:cell];
-    [cell.button removeTarget:_target action:_selector forControlEvents:UIControlEventTouchUpInside];
+    [cell.button removeTarget:_currentStatus.target action:_currentStatus.selector forControlEvents:UIControlEventTouchUpInside];
 }
 @end

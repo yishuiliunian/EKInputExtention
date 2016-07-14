@@ -43,4 +43,5 @@ Pod::Spec.new do |s|
   s.dependency 'BEMCheckBox'
   s.dependency 'MD5Digest'
   s.dependency 'DZProgrameDefines'
+  s.dependency 'StyleSheet'
 end

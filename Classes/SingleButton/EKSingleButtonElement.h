@@ -9,7 +9,7 @@
 #import <ElementKit/ElementKit.h>
 
 
-@interface EKSingleButtonElement : EKAdjustCellElement
+@interface EKSingleButtonElementStatus : NSObject
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, strong)  UIImage* normalImage;
@@ -17,4 +17,10 @@
 @property (nonatomic, strong) UIImage* highlightImage;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) UIColor* titleNormalColor;
+@property (nonatomic, assign) BOOL border;
+@end
+
+
+@interface EKSingleButtonElement : EKAdjustCellElement
+@property (nonatomic, strong) EKSingleButtonElementStatus* currentStatus;
 @end
