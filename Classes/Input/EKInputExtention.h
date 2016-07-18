@@ -25,5 +25,7 @@
 #import "EKSelectListBridge.h"
 #import "EKSelectListTableElement.h"
 #import "EKSelectListItemElement.h"
+#import "EKSlideInputElement.h"
+#import "EKInputTextViewElement.h"
 
 #endif /* EKInputExtention_h */

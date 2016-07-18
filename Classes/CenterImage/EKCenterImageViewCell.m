@@ -20,6 +20,7 @@
     _margin = 10;
     self.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_centerImageView];
+    _centerImageView.contentMode = UIViewContentModeScaleAspectFit;
     return self;
 }
 

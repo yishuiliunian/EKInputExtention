@@ -27,7 +27,9 @@
     cell.textView.placeholder = self.placeHolder;
     cell.textView.text = self.text;
     cell.textView.delegate = self;
-    cell.textView.font = _textFont;
+    if (_textFont) {
+        cell.textView.font = _textFont;
+    }
 }
 
 

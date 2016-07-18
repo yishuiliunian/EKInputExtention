@@ -43,8 +43,8 @@
 {
     if (_dataVaild != dataVaild) {
         _dataVaild = dataVaild;
-        [self dataStatesChanged];
     }
+    [self dataStatesChanged];
 }
 
 - (void) dataStatesChanged

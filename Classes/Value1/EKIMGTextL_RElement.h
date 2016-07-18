@@ -7,10 +7,10 @@
 //
 
 #import <ElementKit/ElementKit.h>
-
+#import "EKInputElement.h"
 typedef void(^HandleAction)(void);
 
-@interface EKIMGTextL_RElement : EKAdjustCellElement
+@interface EKIMGTextL_RElement : EKInputElement
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* detailText;
