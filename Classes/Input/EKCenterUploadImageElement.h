@@ -12,7 +12,7 @@
     @protected
     UIImage* _cachedImage;
 }
-@property (nonatomic, strong, readonly) UIImage* placeHodlerImage;
+@property (nonatomic, strong) UIImage* placeHodlerImage;
 @property (nonatomic, strong, readonly) NSString* url;
 - (instancetype) initPlaceHolderImage:(UIImage*)image;
 
