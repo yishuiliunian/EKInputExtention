@@ -28,7 +28,7 @@
 {
     [super layoutSubviews];
     
-    CGRect contentRect = CGRectCenterSubSize(self.contentView.bounds, CGSizeMake(30, 20));
+    CGRect contentRect = CGRectCenterSubSize(self.contentView.bounds, CGSizeMake(50, 20));
     CGRect titleR;
     CGRect sR;
     CGRectDivide(contentRect, &titleR, &sR, 30, CGRectMinYEdge);

@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSString* text;
 @property (nonatomic, strong) NSString* placeHolder;
 @property (nonatomic, strong) UIImage* leftImage;
+- (instancetype) initWithImage:(UIImage*)image placeHolder:(NSString*)placeHolder;
 @end

@@ -19,6 +19,16 @@
     _viewClass = [EKTextFiledCell class];
     return self;
 }
+- (instancetype) initWithImage:(UIImage *)image placeHolder:(NSString *)placeHolder
+{
+    self = [self init];
+    if (!self) {
+        return self;
+    }
+    _leftImage = image;
+    _placeHolder = placeHolder;
+    return self;
+}
 - (EKTextFiledCell*) activeCell
 {
     return (EKTextFiledCell*)self.uiEventPool;
