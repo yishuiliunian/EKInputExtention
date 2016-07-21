@@ -54,7 +54,6 @@
 
 - (void) reloadData
 {
-    [_dataController clean];
     [self loadInputElements];
     [self.tableView reloadData];
 }
