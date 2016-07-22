@@ -21,6 +21,7 @@
     self.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_centerImageView];
     _centerImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _centerImageView.layer.masksToBounds = YES;
     return self;
 }
 
