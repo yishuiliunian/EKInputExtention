@@ -24,7 +24,9 @@
 {
     if (_dataVaild != dataVaild) {
         _dataVaild = dataVaild;
-        [self.eventBus performSelector:@selector(inputElement:dataVaildChanged:) withObject:self withObject:@(_dataVaild)];
+        if ([self.eventBus respondsToSelector:@selector(inputElement:dataVaildChanged:)]) {
+            [self.eventBus performSelector:@selector(inputElement:dataVaildChanged:) withObject:self withObject:@(_dataVaild)];
+        }
     }
 }
 
