@@ -28,5 +28,6 @@
 #import "EKSlideInputElement.h"
 #import "EKInputTextViewElement.h"
 #import "EKAdjustTextViewElement.h"
+#import "EKSwitchItemElement.h"
 
 #endif /* EKInputExtention_h */
