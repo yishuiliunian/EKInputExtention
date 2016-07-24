@@ -15,6 +15,7 @@
 @property (nonatomic, strong, readonly) UIImage* cachedImage;
 @property (nonatomic, strong) UIImage* placeHodlerImage;
 @property (nonatomic, strong, readonly) NSString* url;
+@property (nonatomic, assign) BOOL photoTweak;
 - (instancetype) initPlaceHolderImage:(UIImage*)image;
 
 - (void) uploadImage:(UIImage*)image;

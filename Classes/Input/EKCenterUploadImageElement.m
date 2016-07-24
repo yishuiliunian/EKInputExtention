@@ -9,7 +9,8 @@
 #import "EKCenterUploadImageElement.h"
 #import "EKCenterImageViewCell.h"
 #import "DZProgrameDefines.h"
-
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <RSKImageCropper/RSKImageCropper.h>
 
 @interface EKCenterUploadImageElement ()
 @end
@@ -24,6 +25,7 @@
     }
     _viewClass = [EKCenterImageViewCell class];
     _cellHeight = 140;
+    _photoTweak = NO;
     return self;
 }
 
@@ -108,9 +110,53 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage* image = info[UIImagePickerControllerOriginalImage];
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    __weak typeof(self) wSelf = self;
-    [self uploadImage:image];
-    [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:image];
+    if (self.photoTweak) {
+        RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:image];
+        imageCropVC.delegate = self;
+        imageCropVC.cropMode = RSKImageCropModeSquare;
+        [picker pushViewController:imageCropVC animated:YES];
+    } else {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        [self uploadImage:image];
+        [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:image];
+    }
 }
+
+
+// Crop image has been canceled.
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+{
+    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+// The original image has been cropped.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+{
+    [self uploadImage:croppedImage];
+    [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
+    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+// The original image has been cropped. Additionally provides a rotation angle used to produce image.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+                  rotationAngle:(CGFloat)rotationAngle
+{
+    [self uploadImage:croppedImage];
+    [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
+    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+// The original image will be cropped.
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                  willCropImage:(UIImage *)originalImage
+{
+    // Use when `applyMaskToCroppedImage` set to YES.
+    [SVProgressHUD show];
+}
+
 @end
