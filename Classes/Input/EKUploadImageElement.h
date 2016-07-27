@@ -18,6 +18,7 @@
 - (int) numberOfUploadImage;
 - (void) handleUploadAction:(EKUploadImageCell*)cell;
 - (void) loadContentForUploadItemCell:(EKUploadItemCollectionViewCell*)cell atIndex:(int)index;
+- (void) showCamera;
 @end
 
 

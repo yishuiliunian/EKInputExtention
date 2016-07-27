@@ -15,6 +15,9 @@
 {
     NSArray* _uploadedImageUrls;
     NSMutableDictionary* _uploadImageCache;
+    BOOL _showingCamera;
+    BOOL _needShow;
+    UIImagePickerControllerSourceType _needType;
 }
 @property (nonatomic, weak, readonly) EKUploadImageCell* activeCell;
 @end
@@ -30,6 +33,7 @@
     _uploadImageCache = [NSMutableDictionary new];
     self.cellHeight = 100;
     _maxImageCount = 3;
+    _showingCamera = NO;
     return self;
 }
 - (EKUploadImageCell*) activeCell
@@ -76,30 +80,53 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     [actionSheet showInView:self.hostViewController.view];
 }
 
-- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void) showImagePickerWithType:(UIImagePickerControllerSourceType)type
 {
-    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    _needShow = NO;
+    _needType = 0;
+    _showingCamera = YES;
     UIImagePickerController* pickerVC = [[UIImagePickerController alloc]init];
     pickerVC.delegate = self;
-    if ([title isEqualToString:kCYPICFromCamera]) {
-        pickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else if ([title isEqualToString:kCYPICFromLocal]) {
-        pickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    else {
-        return;
-    }
-    
+        pickerVC.sourceType = type;
     [self.hostViewController.navigationController presentViewController:pickerVC animated:YES completion:^{
         
     }];
 }
+- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:kCYPICFromCamera]) {
+        [self showImagePickerWithType:UIImagePickerControllerSourceTypeCamera];
+    }
+    else if ([title isEqualToString:kCYPICFromLocal]) {
+        [self showImagePickerWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    else {
+        _showingCamera = NO;
+        return;
+    }
+}
 
+
+- (void) showCamera
+{
+    if (!_showingCamera) {
+        if (self.hostViewController) {
+            [self showImagePickerWithType:UIImagePickerControllerSourceTypeCamera];
+        } else {
+            _needShow = YES;
+            _needType = UIImagePickerControllerSourceTypeCamera;
+        }
+    }
+ 
+}
 
 - (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        _showingCamera = NO;
+    }];
+    
 }
 
 
@@ -120,7 +147,9 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage* image = info[UIImagePickerControllerOriginalImage];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        _showingCamera = NO;
+    }];
     __weak typeof(self) wSelf = self;
     [self uploadImage:image];
 }
@@ -129,6 +158,9 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     [super willBeginHandleResponser:cell];
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     [cell.collectionView reloadData];
+    if (_needShow) {
+        [self showImagePickerWithType:_needType];
+    }
 }
 
 - (void) didBeginHandleResponser:(EKUploadImageCell *)cell
