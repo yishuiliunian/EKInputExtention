@@ -22,12 +22,10 @@
 
 - (void) setDataVaild:(BOOL)dataVaild
 {
-    if (_dataVaild != dataVaild) {
-        _dataVaild = dataVaild;
-        if ([self.eventBus respondsToSelector:@selector(inputElement:dataVaildChanged:)]) {
+    _dataVaild = dataVaild;
+    if ([self.eventBus respondsToSelector:@selector(inputElement:dataVaildChanged:)]) {
             [self.eventBus performSelector:@selector(inputElement:dataVaildChanged:) withObject:self withObject:@(_dataVaild)];
-        }
-    }
+     }
 }
 
 @end

@@ -44,8 +44,7 @@
     [super willBeginHandleResponser:cell];
     if (_cachedImage) {
         cell.centerImageView.image = _cachedImage;
-    }
-    if (_placeHodlerImage) {
+    } else if(_placeHodlerImage){
         cell.centerImageView.image = _placeHodlerImage;
     }
 }
@@ -134,6 +133,7 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
                    didCropImage:(UIImage *)croppedImage
                   usingCropRect:(CGRect)cropRect
 {
+    _cachedImage = croppedImage;
     [self uploadImage:croppedImage];
     [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
     [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -146,6 +146,7 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
                   usingCropRect:(CGRect)cropRect
                   rotationAngle:(CGFloat)rotationAngle
 {
+    _cachedImage = croppedImage;
     [self uploadImage:croppedImage];
     [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
     [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
