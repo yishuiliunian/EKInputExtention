@@ -160,6 +160,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     [cell.collectionView reloadData];
     if (_needShow) {
         [self showImagePickerWithType:_needType];
+        _needShow = NO;
     }
 }
 
