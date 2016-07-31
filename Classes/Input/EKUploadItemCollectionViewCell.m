@@ -16,6 +16,8 @@
         return self;
     }
     INIT_SUBVIEW_UIImageView(self.contentView, _imageView);
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.layer.masksToBounds = YES;
     return self;
 }
 

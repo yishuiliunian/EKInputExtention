@@ -24,7 +24,6 @@
     if (!self) {
         return self;
     }
-//    INIT_SUBVIEW_UILabel(self.contentView, _countLabel);
     UICollectionViewFlowLayout* collectionViewLayout = [UICollectionViewFlowLayout new];
     collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectLoadViewFrame.size.height, 40) collectionViewLayout:collectionViewLayout];
@@ -46,11 +45,6 @@
     [super layoutSubviews];
     CGRect conentRect = CGRectCenterSubSize(self.contentView.bounds, CGSizeMake(40, 10));
     _collectionView.frame = conentRect;
-//    CGRect topRect;
-//    CGRect labelRect;
-//    CGRectDivide(conentRect, &topRect, &labelRect, 65, CGRectMinYEdge);
-//    _collectionView.frame = topRect;
-//    _countLabel.frame = labelRect;
 }
 
 - (EKUploadImageElement*) uploadLayout
@@ -96,8 +90,11 @@
 {
     if (self.uploadLayout.maxImageCount >= self.uploadLayout.numberOfUploadImage && indexPath.row == self.uploadLayout.numberOfUploadImage) {
         [self.uploadLayout handleUploadAction:self];
+    } else {
+        [self.uploadLayout handleDidTapImageAtIndex:indexPath.row];
     }
 }
+
 
 
 @end

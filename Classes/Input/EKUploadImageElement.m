@@ -10,6 +10,7 @@
 #import "EKUploadImageElement.h"
 #import "EKUploadImageCell.h"
 #import "EKUploadItemCollectionViewCell.h"
+#import "MWPhotoBrowser.h"
 
 @interface EKUploadImageElement () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -43,7 +44,20 @@
 
 - (NSArray*) allUploadedImageURLS
 {
+  
     return [_uploadedImageUrls copy];
+}
+
+- (NSArray*) allImages
+{
+    NSMutableArray* array = [NSMutableArray new];
+    for (NSString* url in self.allUploadedImageURLS) {
+        UIImage* img = [_uploadImageCache objectForKey:url];
+        if (img) {
+            [array addObject:img];
+        }
+    }
+    return array;
 }
 
 - (int) numberOfUploadImage
@@ -51,11 +65,30 @@
     return (int)_uploadedImageUrls.count;
 }
 
+
+
 - (void) handleUploadAction:(EKUploadImageCell *)cell
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     [self takePicture];
 }
+
+- (void) handleDidTapImageAtIndex:(NSInteger)index
+{
+    NSMutableArray* photos = [NSMutableArray new];
+    for (UIImage* image in [self allImages]) {
+        
+        MWPhoto* photo = [MWPhoto photoWithImage:image];
+        [photos addObject:photo];
+    }
+    MWPhotoBrowser* browser = [[MWPhotoBrowser alloc] initWithPhotos:photos];
+    if (index < [self allImages].count) {
+        [browser setCurrentPhotoIndex:index];
+    }
+    [self.hostViewController.navigationController pushViewController:browser animated:YES];
+
+}
+
 - (UIImage*) cacheImageForURL:(NSString *)url
 {
     if (!url) {
@@ -65,6 +98,7 @@
 
     return _uploadImageCache[url];
 }
+
 - (void) loadContentForUploadItemCell:(EKUploadItemCollectionViewCell*)cell atIndex:(int)index
 {
     cell.imageView.image = _uploadImageCache[_uploadedImageUrls[index]];
