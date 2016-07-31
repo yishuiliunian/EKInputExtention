@@ -17,7 +17,7 @@
     if (!self) {
         return self;
     }
-    
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
     return self;
 }
 
