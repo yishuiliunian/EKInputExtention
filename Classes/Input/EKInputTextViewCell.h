@@ -11,4 +11,5 @@
 #import <SZTextView/SZTextView.h>
 @interface EKInputTextViewCell : EKAdjustTableViewCell
 @property (nonatomic, strong, readonly) SZTextView* textView;
+@property (nonatomic, strong, readonly) UILabel* countLabel;
 @end
