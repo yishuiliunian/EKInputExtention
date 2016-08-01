@@ -20,6 +20,11 @@
     return self;
 }
 
+- (void) willBeginHandleResponser:(UITableViewCell*)responser
+{
+    [super willBeginHandleResponser:responser];
+    responser.selectionStyle = UITableViewCellSelectionStyleNone;
+}
 - (void) setDataVaild:(BOOL)dataVaild
 {
     _dataVaild = dataVaild;
