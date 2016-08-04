@@ -20,6 +20,7 @@
         return self;
     }
     _viewClass = [EKSwitchItemCell class];
+    _titleFont = [UIFont boldSystemFontOfSize:15];
     return self;
 }
 
@@ -38,6 +39,7 @@
     [super willBeginHandleResponser:cell];
     cell.switchView.on = self.on;
     cell.textLabel.text = self.title;
+    cell.textLabel.font = _titleFont;
 }
 
 - (void) didBeginHandleResponser:(EKSwitchItemCell *)cell

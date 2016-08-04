@@ -21,6 +21,8 @@
     INIT_SUBVIEW_UILabel(self.contentView, _titleLabel);
     INIT_SUBVIEW(self.contentView, UISlider,_slider);
     _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textColor = [UIColor lightGrayColor];
+    _titleLabel.font = [UIFont systemFontOfSize:14];
     return self;
 }
 
@@ -31,7 +33,7 @@
     CGRect contentRect = CGRectCenterSubSize(self.contentView.bounds, CGSizeMake(50, 20));
     CGRect titleR;
     CGRect sR;
-    CGRectDivide(contentRect, &titleR, &sR, 30, CGRectMinYEdge);
+    CGRectDivide(contentRect, &sR, &titleR, 30, CGRectMinYEdge);
     
     _titleLabel.frame = titleR;
     _slider.frame = sR;

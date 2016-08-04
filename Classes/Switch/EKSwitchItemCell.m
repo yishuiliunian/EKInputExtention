@@ -36,7 +36,7 @@
     CGRect switchR;
     CGRectDivide(contentRect, &switchR, &contentRect, size.width, CGRectMaxXEdge);
     switchR = CGRectCenter(switchR, size);
-    switchR = CGRectOffset(switchR, -30, 0);
+    switchR = CGRectOffset(switchR, -15, 0);
     self.switchView.frame = switchR;
     
     [self.contentView bringSubviewToFront:_switchView];

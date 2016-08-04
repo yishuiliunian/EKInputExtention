@@ -13,5 +13,6 @@
 @property (nonatomic, assign) BOOL on;
 @property (nonatomic, strong) void (^ValueChangedBlock)(BOOL on);
 @property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong) UIFont* titleFont;
 - (instancetype) initWithOn:(BOOL)on;
 @end

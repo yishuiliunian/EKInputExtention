@@ -37,7 +37,7 @@
     if (self.count) {
         cell.titleLabel.text = [NSString stringWithFormat:@"已经选择人数%d", self.count];
     } else {
-        cell.titleLabel.text = @"拖动已选择";
+        cell.titleLabel.text = @"拖动以选择";
     }
     [cell.slider removeTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     [cell.slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
