@@ -35,6 +35,7 @@
     self.cellHeight = 100;
     _maxImageCount = 3;
     _showingCamera = NO;
+    self.selectionStyle = UITableViewCellSeparatorStyleNone;
     return self;
 }
 - (EKUploadImageCell*) activeCell
@@ -190,7 +191,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
 - (void) willBeginHandleResponser:(EKUploadImageCell*)cell
 {
     [super willBeginHandleResponser:cell];
-    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+
     [cell.collectionView reloadData];
     if (_needShow) {
         [self showImagePickerWithType:_needType];

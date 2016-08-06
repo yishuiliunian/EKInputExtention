@@ -17,13 +17,14 @@
         return self;
     }
     _dataVaild = NO;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     return self;
 }
 
 - (void) willBeginHandleResponser:(UITableViewCell*)responser
 {
     [super willBeginHandleResponser:responser];
-    responser.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 - (void) setDataVaild:(BOOL)dataVaild
 {

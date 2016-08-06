@@ -16,13 +16,14 @@
         return self;
     }
     _dataVaild = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     return self;
 }
 
 - (void) willBeginHandleResponser:(UITableViewCell *)responser
 {
     [super willBeginHandleResponser:responser];
-    responser.selectionStyle = UITableViewCellSelectionStyleNone;
+
     responser.backgroundColor = [UIColor clearColor];
     responser.contentView.backgroundColor = [UIColor clearColor];
 }

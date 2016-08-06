@@ -17,6 +17,7 @@
         return self;
     }
     _viewClass = [EKIMGTextL_RCell class];
+    _titleFont = [UIFont systemFontOfSize:15];
     return self;
 }
 
