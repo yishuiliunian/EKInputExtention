@@ -11,6 +11,6 @@
 #import <BEMCheckBox/BEMCheckBox.h>
 @interface EKCheckBoxCell : UITableViewCell
 @property (nonatomic, strong, readonly) BEMCheckBox* checkBox;
-@property (nonatomic, strong, readonly) UILabel* titleLabel;
-@property (nonatomic, strong, readonly) UILabel* detailLabel;
+//@property (nonatomic, strong, readonly) UILabel* titleLabel;
+//@property (nonatomic, strong, readonly) UILabel* detailLabel;
 @end

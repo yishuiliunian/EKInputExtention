@@ -28,6 +28,9 @@
 - (void) didTapCheckBox:(BEMCheckBox *)checkBox
 {
     _opened = checkBox.on;
+    if ([self.eventBus respondsToSelector:@selector(ek_checkBoxElementValueChanged:)]) {
+        [self.eventBus ek_checkBoxElementValueChanged:self];
+    }
 }
 
 - (void) willBeginHandleResponser:(EKCheckBoxCell*)cell

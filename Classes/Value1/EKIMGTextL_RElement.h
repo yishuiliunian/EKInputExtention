@@ -14,6 +14,8 @@ typedef void(^HandleAction)(void);
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* detailText;
+@property (nonatomic, strong) UIFont* titleFont;
+@property (nonatomic, strong) UIColor* titleColor;
 
 - (instancetype) initWithTitle:(NSString*)title image:(UIImage*)image;
 - (instancetype) initWithTitle:(NSString *)title image:(UIImage *)image detailText:(NSString*)detailText;

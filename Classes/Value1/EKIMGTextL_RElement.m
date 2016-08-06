@@ -46,6 +46,12 @@
     cell.textLabel.text = _title;
     cell.imageView.image = _image;
     cell.detailTextLabel.text = _detailText;
+    if (_titleFont) {
+        cell.textLabel.font  = _titleFont;
+    }
+    if (_titleColor) {
+        cell.textLabel.textColor = _titleColor;
+    }
 
 }
 

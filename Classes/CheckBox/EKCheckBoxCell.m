@@ -19,32 +19,35 @@
     }
 
     INIT_SUBVIEW(self.contentView, BEMCheckBox, _checkBox);
-    INIT_SUBVIEW_UILabel(self.contentView, _titleLabel);
-    INIT_SUBVIEW_UILabel(self.contentView, _detailLabel);
+    _checkBox.frame = CGRectMake(0, 0, 20, 20);
+    self.accessoryView = _checkBox;
+//    self.accessoryType = UITableViewCellAccessoryDetailButton
+//    INIT_SUBVIEW_UILabel(self.contentView, _titleLabel);
+//    INIT_SUBVIEW_UILabel(self.contentView, _detailLabel);
     return self;
 }
 
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    CGRect contentRect = self.contentView.bounds;
-    contentRect = CGRectCenterSubSize(contentRect, CGSizeMake(35, 10));
-    
-    CGSize imageSize = CGSizeMake(20, 20);
-    
-    CGRect boxRect;
-    CGRectDivide(contentRect, &boxRect, &contentRect, imageSize.width, CGRectMinXEdge);
-    
-    boxRect = CGRectCenter(boxRect, imageSize);
-    contentRect = CGRectShrink(contentRect, 15, CGRectMinXEdge);
-    
-    CGRect rects[2];
-    CGRectVerticalSplit(contentRect, &rects, 2, 4);
-    
-    _checkBox.frame = boxRect;
-    _titleLabel.frame = rects[0];
-    _detailLabel.frame = rects[1];
-    
+//    CGRect contentRect = self.contentView.bounds;
+//    contentRect = CGRectCenterSubSize(contentRect, CGSizeMake(35, 10));
+//    
+//    CGSize imageSize = CGSizeMake(20, 20);
+//    
+//    CGRect boxRect;
+//    CGRectDivide(contentRect, &boxRect, &contentRect, imageSize.width, CGRectMinXEdge);
+//    
+//    boxRect = CGRectCenter(boxRect, imageSize);
+//    contentRect = CGRectShrink(contentRect, 15, CGRectMinXEdge);
+//    
+//    CGRect rects[2];
+//    CGRectVerticalSplit(contentRect, &rects, 2, 4);
+//    
+//    _checkBox.frame = boxRect;
+//    _titleLabel.frame = rects[0];
+//    _detailLabel.frame = rects[1];
+//    
     
 }
 
