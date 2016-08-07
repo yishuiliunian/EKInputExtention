@@ -8,10 +8,10 @@
 
 #import <ElementKit/ElementKit.h>
 
-
+#import "EKInputElement.h"
 @class EKUploadImageCell;
 @class EKUploadItemCollectionViewCell;
-@interface EKUploadImageElement : EKAdjustCellElement
+@interface EKUploadImageElement :EKInputElement
 @property (nonatomic, assign) int maxImageCount;
 - (NSArray*) allUploadedImageURLS;
 - (UIImage*) cacheImageForURL:(NSString*)url;

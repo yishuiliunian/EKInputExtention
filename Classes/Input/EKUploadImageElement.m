@@ -36,6 +36,7 @@
     _maxImageCount = 3;
     _showingCamera = NO;
     self.selectionStyle = UITableViewCellSeparatorStyleNone;
+    _dataVaild = NO;
     return self;
 }
 - (EKUploadImageCell*) activeCell
@@ -96,7 +97,6 @@
         return nil;
         
     }
-
     return _uploadImageCache[url];
 }
 
@@ -175,6 +175,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     if (!url) {
         return;
     }
+    self.dataVaild = YES;
     _uploadImageCache[url] = image;
     _uploadedImageUrls = _uploadImageCache.allKeys;
     [self.activeCell.collectionView reloadData];
