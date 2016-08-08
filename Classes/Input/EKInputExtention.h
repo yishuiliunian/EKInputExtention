@@ -29,5 +29,6 @@
 #import "EKInputTextViewElement.h"
 #import "EKAdjustTextViewElement.h"
 #import "EKSwitchItemElement.h"
+#import "EKAdjustLabelElement.h"
 
 #endif /* EKInputExtention_h */

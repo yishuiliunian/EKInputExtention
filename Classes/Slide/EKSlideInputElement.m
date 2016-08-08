@@ -37,18 +37,18 @@
     if (self.count) {
         cell.titleLabel.text = [NSString stringWithFormat:@"已经选择人数%d", self.count];
     } else {
-        cell.titleLabel.text = @"拖动以选择";
+        cell.titleLabel.text = @"拖动选择人数";
     }
     [cell.slider removeTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     [cell.slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 - (void) valueChanged:(UISlider*)slider
 {
-    self.count = slider.value * 50;
+    self.count = floor(slider.value * 50);
     if (self.count) {
        self.cell.titleLabel.text = [NSString stringWithFormat:@"已经选择人数 %d", self.count];
     } else {
-        self.cell.titleLabel.text = @"拖动以选择";
+        self.cell.titleLabel.text = @"拖动选择人数";
     }
 }
 - (void) setCount:(int)count
@@ -56,6 +56,8 @@
     _count = count;
     if (count) {
         [self setDataVaild:YES];
+    } else {
+        [self setDataVaild:NO];
     }
 }
 

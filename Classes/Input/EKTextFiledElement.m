@@ -36,6 +36,9 @@
 - (void) willBeginHandleResponser:(EKTextFiledCell *)responser
 {
     [super willBeginHandleResponser:responser];
+    if (_textFont) {
+        responser.textFiled.font = _textFont;
+    }
     [responser.textFiled addTarget:self action:@selector(textContentChanged:) forControlEvents:UIControlEventEditingChanged];
     responser.textFiled.text = _text;
     responser.textFiled.placeholder = _placeHolder;

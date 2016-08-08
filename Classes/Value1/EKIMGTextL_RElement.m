@@ -49,10 +49,12 @@
     cell.detailTextLabel.text = _detailText;
     if (_titleFont) {
         cell.textLabel.font  = _titleFont;
+        cell.detailTextLabel.font = _titleFont;
     }
     if (_titleColor) {
         cell.textLabel.textColor = _titleColor;
     }
+    
 
 }
 
