@@ -10,7 +10,7 @@
 #import "EKCenterImageViewCell.h"
 #import "DZProgrameDefines.h"
 #import <SVProgressHUD/SVProgressHUD.h>
-#import <RSKImageCropper/RSKImageCropper.h>
+
 
 @interface EKCenterUploadImageElement ()
 @end
@@ -26,6 +26,8 @@
     _viewClass = [EKCenterImageViewCell class];
     _cellHeight = 140;
     _photoTweak = NO;
+    _cropMode = RSKImageCropModeSquare;
+    _cropRatio = 0.8;
     return self;
 }
 
@@ -112,7 +114,8 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
     if (self.photoTweak) {
         RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:image];
         imageCropVC.delegate = self;
-        imageCropVC.cropMode = RSKImageCropModeSquare;
+        imageCropVC.cropMode = self.cropMode;
+        imageCropVC.dataSource =self;
         [picker pushViewController:imageCropVC animated:YES];
     } else {
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -120,7 +123,6 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
         [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:image];
     }
 }
-
 
 // Crop image has been canceled.
 - (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
@@ -160,4 +162,35 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
     [SVProgressHUD show];
 }
 
+- (CGRect) imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+{
+    CGSize maskSize;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    width = width - 60;
+    CGFloat height = width * self.cropRatio;
+    maskSize.width = width;
+    maskSize.height = height;
+    
+    
+    CGFloat viewWidth = CGRectGetWidth(controller.view.frame);
+    CGFloat viewHeight = CGRectGetHeight(controller.view.frame);
+    
+    CGRect maskRect = CGRectMake((viewWidth - maskSize.width) * 0.5f,
+                                 (viewHeight - maskSize.height) * 0.5f,
+                                 maskSize.width,
+                                 maskSize.height);
+    
+    return maskRect;
+}
+- (UIBezierPath*) imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+{
+    CGRect rect = controller.maskRect;
+    return [UIBezierPath bezierPathWithRect:rect];
+}
+
+- (CGRect)imageCropViewControllerCustomMovementRect:(RSKImageCropViewController *)controller
+{
+    return controller.maskRect;
+}
 @end
