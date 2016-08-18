@@ -46,7 +46,7 @@
     CGSize imageSize = _image.size;
     
     CGFloat space = 10;
-    CGFloat cellHeight = 0;
+    double cellHeight = 0;
     CGFloat textMaxWidth = CGRectGetWidth(contentRect);
     if (!CGSizeEqualToSize(imageSize, CGSizeZero)) {
         CGRectDivide(contentRect, &_imageRect, &_titleRect, imageSize.width, CGRectMinXEdge);
@@ -64,7 +64,7 @@
     if (size.height + 2*_yMargin > 44) {
         cellHeight = size.height + 2*_yMargin;
     } else {
-        cellHeight = 44;
+        cellHeight = 44.f;
     }
     self.cellHeight = cellHeight;
     _titleRect.origin.y= (cellHeight - size.height)/2;

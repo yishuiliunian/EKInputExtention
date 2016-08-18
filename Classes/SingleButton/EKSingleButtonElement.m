@@ -34,7 +34,7 @@
         return self;
     }
     _viewClass = [EKSingleButtonCell class];
-    self.cellHeight = 54;
+    self.cellHeight = 54.f;
     return self;
 }
 - (EKSingleButtonCell*) cell

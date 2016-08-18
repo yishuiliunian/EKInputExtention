@@ -32,7 +32,7 @@
     }
     _viewClass = [EKUploadImageCell class];
     _uploadImageCache = [NSMutableDictionary new];
-    self.cellHeight = 100;
+    self.cellHeight = 100.f;
     _maxImageCount = 3;
     _showingCamera = NO;
     self.selectionStyle = UITableViewCellSeparatorStyleNone;

@@ -24,7 +24,7 @@
         return self;
     }
     _viewClass = [EKCenterImageViewCell class];
-    _cellHeight = 140;
+    _cellHeight = 140.f;
     _photoTweak = NO;
     _cropMode = RSKImageCropModeSquare;
     _cropRatio = 0.8;

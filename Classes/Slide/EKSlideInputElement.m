@@ -22,7 +22,7 @@
         return self;
     }
     _viewClass = [EKSlideInputCell class];
-    self.cellHeight = 80;
+    self.cellHeight = 80.f;
     return self;
 }
 - (EKSlideInputCell*) cell

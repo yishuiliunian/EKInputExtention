@@ -22,10 +22,7 @@
     return self;
 }
 
-- (CGFloat) cellHeight
-{
-    return _cellHeight;
-}
+
 - (void) willBeginHandleResponser:(EKLineViewCell*)cell
 {
     [super willBeginHandleResponser:cell];
