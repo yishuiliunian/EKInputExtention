@@ -44,4 +44,6 @@ Pod::Spec.new do |s|
   s.dependency 'MD5Digest'
   s.dependency 'DZProgrameDefines'
   s.dependency 'StyleSheet'
+  s.dependency 'RSKImageCropper'
+  s.dependency 'MWPhotoBrowser'
 end
