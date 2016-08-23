@@ -7,11 +7,11 @@
 //
 
 #import <ElementKit/ElementKit.h>
-
+#import "EKUploadItemCollectionViewCell.h"
 #import "EKInputElement.h"
 @class EKUploadImageCell;
 @class EKUploadItemCollectionViewCell;
-@interface EKUploadImageElement :EKInputElement
+@interface EKUploadImageElement :EKInputElement <EKUploadItemCollectionViewCellDelegate>
 @property (nonatomic, assign) int maxImageCount;
 - (NSArray*) allUploadedImageURLS;
 - (UIImage*) cacheImageForURL:(NSString*)url;

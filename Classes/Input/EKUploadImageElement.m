@@ -19,6 +19,8 @@
     BOOL _showingCamera;
     BOOL _needShow;
     UIImagePickerControllerSourceType _needType;
+    
+    NSString* _willRaplaceURL;
 }
 @property (nonatomic, weak, readonly) EKUploadImageCell* activeCell;
 @end
@@ -68,7 +70,25 @@
 }
 
 
+- (void) uploadItemCellOccurReplace:(EKUploadItemCollectionViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.activeCell.collectionView indexPathForCell:cell];
+    if (indexPath.row < _uploadedImageUrls.count) {
+        _willRaplaceURL = _uploadedImageUrls[indexPath.row];
+        [self takePicture];
+    }
+}
 
+- (void) uploadItemCellOccurDelete:(EKUploadItemCollectionViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.activeCell.collectionView indexPathForCell:cell];
+    if (indexPath.row < _uploadedImageUrls.count) {
+        NSMutableArray* array = [_uploadedImageUrls mutableCopy];
+        [array removeObjectAtIndex:indexPath.row];
+        _uploadedImageUrls = array;
+        [self.activeCell.collectionView reloadData];
+    }
+}
 - (void) handleUploadAction:(EKUploadImageCell *)cell
 {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -138,6 +158,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     }
     else {
         _showingCamera = NO;
+        _willRaplaceURL = nil;
         return;
     }
 }
@@ -160,6 +181,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
 {
     [picker dismissViewControllerAnimated:YES completion:^{
         _showingCamera = NO;
+        _willRaplaceURL = nil;
     }];
     
 }
@@ -177,7 +199,17 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     }
     self.dataVaild = YES;
     _uploadImageCache[url] = image;
-    _uploadedImageUrls = _uploadImageCache.allKeys;
+    if (_uploadedImageUrls) {
+        NSMutableArray* array = [_uploadedImageUrls mutableCopy];
+        if ([array containsObject:_willRaplaceURL]) {
+            NSInteger index = [array indexOfObject:_willRaplaceURL];
+            [array replaceObjectAtIndex:index withObject:url];
+            _uploadedImageUrls = array;
+        }
+    } else {
+        _uploadedImageUrls = _uploadImageCache.allKeys;
+    }
+    _willRaplaceURL = nil;
     [self.activeCell.collectionView reloadData];
 }
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info

@@ -27,7 +27,7 @@
         return self;
     }
     _viewClass = [EKAdjustLabelCell class];
-    _xMargin = 20;
+    _xMargin = 15;
     _yMargin = 10;
     _font = [UIFont systemFontOfSize:15];
     _contentRect = CGRectZero;
