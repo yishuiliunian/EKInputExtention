@@ -72,7 +72,6 @@
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     EKUploadItemCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"x" forIndexPath:indexPath];
-    cell.delegate = self.attachedElement;
     return cell;
 }
 
@@ -81,10 +80,8 @@
     if (self.uploadLayout.maxImageCount >= self.uploadLayout.numberOfUploadImage && indexPath.row == self.uploadLayout.numberOfUploadImage) {
         UIImage* image = [UIImage imageNamed:@"btn_opinion_addphoto.png" ];
         cell.imageView.image = image;
-        cell.longPressRecognizer.enabled = NO;
     } else {
         [self.uploadLayout loadContentForUploadItemCell:cell atIndex:(int)indexPath.row];
-        cell.longPressRecognizer.enabled = YES;
     }
 }
 

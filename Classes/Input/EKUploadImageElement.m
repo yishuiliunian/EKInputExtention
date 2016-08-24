@@ -11,6 +11,7 @@
 #import "EKUploadImageCell.h"
 #import "EKUploadItemCollectionViewCell.h"
 #import "MWPhotoBrowser.h"
+#import <QBPopupMenu.h>
 
 @interface EKUploadImageElement () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -21,6 +22,8 @@
     UIImagePickerControllerSourceType _needType;
     
     NSString* _willRaplaceURL;
+    
+    EKUploadItemCollectionViewCell* _selectedCell;
 }
 @property (nonatomic, weak, readonly) EKUploadImageCell* activeCell;
 @end
@@ -95,19 +98,36 @@
     [self takePicture];
 }
 
+- (void) deleteCurrentImage
+{
+    [self uploadItemCellOccurDelete:_selectedCell];
+    _selectedCell = nil;
+}
+
+- (void) replaceCurrentImage
+{
+    [self uploadItemCellOccurReplace:_selectedCell];
+    _selectedCell = nil;
+}
+
 - (void) handleDidTapImageAtIndex:(NSInteger)index
 {
-    NSMutableArray* photos = [NSMutableArray new];
-    for (UIImage* image in [self allImages]) {
-        
-        MWPhoto* photo = [MWPhoto photoWithImage:image];
-        [photos addObject:photo];
-    }
-    MWPhotoBrowser* browser = [[MWPhotoBrowser alloc] initWithPhotos:photos];
-    if (index < [self allImages].count) {
-        [browser setCurrentPhotoIndex:index];
-    }
-    [self.hostViewController.navigationController pushViewController:browser animated:YES];
+    NSMutableArray* items = [NSMutableArray new];
+    QBPopupMenuItem* delitem = [[QBPopupMenuItem alloc] initWithTitle:@"删除" target:self action:@selector(deleteCurrentImage)];
+    QBPopupMenuItem* replaceitem = [[QBPopupMenuItem alloc] initWithTitle:@"替换" target:self action:@selector(replaceCurrentImage)];
+    [items addObject:delitem];
+    [items addObject:replaceitem];
+    QBPopupMenu* menu = [[QBPopupMenu alloc] initWithItems:items];
+    UIWindow* keywindow = [UIApplication sharedApplication].keyWindow;
+    UICollectionViewCell* cell = [self.activeCell.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    CGRect rect = cell.frame;
+    rect = [self.activeCell.collectionView convertRect:rect toView:keywindow];
+    CGPoint point = rect.origin;
+    point.x = rect.origin.x + rect.size.width/2;
+    rect.origin = point;
+    rect.size.width = 20;
+    _selectedCell = cell;
+    [menu showInView:keywindow targetRect:rect animated:YES];
 
 }
 
@@ -199,7 +219,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
     }
     self.dataVaild = YES;
     _uploadImageCache[url] = image;
-    if (_uploadedImageUrls) {
+    if (_willRaplaceURL) {
         NSMutableArray* array = [_uploadedImageUrls mutableCopy];
         if ([array containsObject:_willRaplaceURL]) {
             NSInteger index = [array indexOfObject:_willRaplaceURL];
