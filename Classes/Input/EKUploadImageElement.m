@@ -227,7 +227,9 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
             _uploadedImageUrls = array;
         }
     } else {
-        _uploadedImageUrls = _uploadImageCache.allKeys;
+        NSMutableArray* array = [NSMutableArray arrayWithArray:_uploadedImageUrls];
+         [array addObject:url];
+        _uploadedImageUrls = array;
     }
     _willRaplaceURL = nil;
     [self.activeCell.collectionView reloadData];
