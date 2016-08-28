@@ -10,6 +10,10 @@
 #import "DZGeometryTools.h"
 @implementation EKCenterImageViewCell
 
+- (void) dealloc
+{
+    [_centerImageView removeObserver:self forKeyPath:@"image"];
+}
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -22,16 +26,29 @@
     [self.contentView addSubview:_centerImageView];
     _centerImageView.contentMode = UIViewContentModeScaleAspectFill;
     _centerImageView.layer.masksToBounds = YES;
+    [_centerImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
     return self;
 }
 
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"image"]) {
+        [self setNeedsLayout];
+    }
+}
 - (void) layoutSubviews
 {
     [super layoutSubviews];
     
     CGFloat height = MIN(CGRectGetHeight(self.contentView.frame), CGRectGetWidth(self.contentView.frame));
     height -= 2* _margin;
-    _centerImageView.frame = CGRectCenter(self.contentView.frame, CGSizeMake(height, height));
+    
+    CGFloat width = height;
+    if (_centerImageView.image) {
+        UIImage* image = _centerImageView.image;
+        width = image.size.height/image.size.width* width;
+    }
+    _centerImageView.frame = CGRectCenter(self.contentView.frame, CGSizeMake(height, width));
     
 }
 @end

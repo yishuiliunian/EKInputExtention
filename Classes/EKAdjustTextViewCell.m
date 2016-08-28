@@ -18,6 +18,7 @@
         return self;
     }
     INIT_SUBVIEW(self.contentView, UILabel, _adjustTextLabel);
+    _adjustTextLabel.numberOfLines = 0;
     return self;
 }
 
