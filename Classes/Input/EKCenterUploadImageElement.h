@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) NSString* url;
 @property (nonatomic, assign) BOOL photoTweak;
 @property (nonatomic, assign) RSKImageCropMode cropMode;
+@property (nonatomic, assign) BOOL needsquare;
 /**
  *  裁剪的宽高比，限定输入为0.5~2.0,只有当cropModel为Custom的时候生效
  */

@@ -41,6 +41,10 @@
     _detailText = detailText;
     return self;
 }
+- (EKIMGTextL_RCell*) IMGText_Cell
+{
+    return (EKIMGTextL_RCell*)self.uiEventPool;
+}
 - (void) willBeginHandleResponser:(EKIMGTextL_RCell*)cell
 {
     [super willBeginHandleResponser:cell];
@@ -54,8 +58,6 @@
     if (_titleColor) {
         cell.textLabel.textColor = _titleColor;
     }
-    
-
 }
 
 - (void) didBeginHandleResponser:(EKIMGTextL_RCell *)cell
@@ -71,6 +73,14 @@
 - (void) didRegsinHandleResponser:(EKIMGTextL_RCell *)cell
 {
     [super didRegsinHandleResponser:cell];
+}
+- (void) handleSelectedInViewController:(UIViewController *)vc
+{
+    [super handleSelectedInViewController:vc];
+    NSIndexPath* indexpath  = [self visibleIndexPath];
+    if (indexpath && indexpath.row != NSNotFound) {
+        [self.superTableView deselectRowAtIndexPath:indexpath animated:YES];
+    }
 }
 
 @end

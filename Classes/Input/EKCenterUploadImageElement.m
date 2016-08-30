@@ -28,6 +28,7 @@
     _photoTweak = NO;
     _cropMode = RSKImageCropModeSquare;
     _cropRatio = 0.8;
+    _needsquare = YES;
     return self;
 }
 
@@ -44,6 +45,8 @@
 - (void) willBeginHandleResponser:(EKCenterImageViewCell *)cell
 {
     [super willBeginHandleResponser:cell];
+    cell.needsquare = self.needsquare;
+    cell.heightWidthRatio = self.cropRatio;
     if (_cachedImage) {
         cell.centerImageView.image = _cachedImage;
     } else if(_placeHodlerImage){
@@ -127,7 +130,11 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
 // Crop image has been canceled.
 - (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
 {
-    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+
+    [controller.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }];
+    [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
 // The original image has been cropped.
@@ -138,7 +145,11 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
     _cachedImage = croppedImage;
     [self uploadImage:croppedImage];
     [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
-    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [controller.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+
     
 }
 
@@ -151,7 +162,11 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
     _cachedImage = croppedImage;
     [self uploadImage:croppedImage];
     [[(EKCenterImageViewCell*)self.uiEventPool centerImageView] setImage:croppedImage];
-    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [controller.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+
 }
 
 // The original image will be cropped.

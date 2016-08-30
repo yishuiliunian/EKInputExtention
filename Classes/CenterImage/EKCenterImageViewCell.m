@@ -27,6 +27,8 @@
     _centerImageView.contentMode = UIViewContentModeScaleAspectFill;
     _centerImageView.layer.masksToBounds = YES;
     [_centerImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:nil];
+    _needsquare = YES;
+    _heightWidthRatio = 1.0;
     return self;
 }
 
@@ -44,11 +46,10 @@
     height -= 2* _margin;
     
     CGFloat width = height;
-    if (_centerImageView.image) {
-        UIImage* image = _centerImageView.image;
-        width = image.size.height/image.size.width* width;
+    if ( !_needsquare) {
+        width = height /_heightWidthRatio ;
     }
-    _centerImageView.frame = CGRectCenter(self.contentView.frame, CGSizeMake(height, width));
+    _centerImageView.frame = CGRectCenter(self.contentView.frame, CGSizeMake(width, height));
     
 }
 @end

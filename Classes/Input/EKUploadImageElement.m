@@ -91,6 +91,7 @@
         _uploadedImageUrls = array;
         [self.activeCell.collectionView reloadData];
     }
+    self.dataVaild = _uploadedImageUrls.count ? YES : NO;
 }
 - (void) handleUploadAction:(EKUploadImageCell *)cell
 {

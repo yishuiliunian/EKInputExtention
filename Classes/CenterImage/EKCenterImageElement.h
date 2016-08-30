@@ -10,4 +10,5 @@
 
 @interface EKCenterImageElement : EKAdjustCellElement
 @property (nonatomic, strong) UIImage* image;
+@property (nonatomic, assign) BOOL needsquare;
 @end

@@ -28,9 +28,10 @@
     }
     _viewClass = [EKAdjustLabelCell class];
     _xMargin = 15;
-    _yMargin = 10;
+    _yMargin = 5;
     _font = [UIFont systemFontOfSize:15];
     _contentRect = CGRectZero;
+    _minHeight = 44.0f;
     return self;
 }
 
@@ -61,10 +62,10 @@
     if (_font) {
         size =[_text boundingRectWithSize:CGSizeMake(textMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:_font} context:nil].size;
     }
-    if (size.height + 2*_yMargin > 44) {
+    if (size.height + 2*_yMargin > _minHeight) {
         cellHeight = size.height + 2*_yMargin;
     } else {
-        cellHeight = 44.f;
+        cellHeight = _minHeight;
     }
     self.cellHeight = cellHeight;
     _titleRect.origin.y= (cellHeight - size.height)/2;

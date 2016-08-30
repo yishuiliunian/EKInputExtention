@@ -12,4 +12,6 @@
 @property (nonatomic, strong, readonly) UIImageView* centerImageView;
 @property (nonatomic, assign) CGFloat margin;
 @property (nonatomic, strong, readonly) UIButton* editButton;
+@property (nonatomic, assign) BOOL needsquare;
+@property (nonatomic, assign) float heightWidthRatio;
 @end

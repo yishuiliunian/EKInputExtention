@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UIImage* image;
 @property (nonatomic, strong) NSString* text;
 @property (nonatomic, strong) UIFont* font;
+@property (nonatomic, assign) CGFloat minHeight;
 - (instancetype) initWithImage:(UIImage*)image text:(NSString*)text;
 @end
