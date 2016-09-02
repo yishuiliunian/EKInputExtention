@@ -14,9 +14,11 @@
 @property (nonatomic, assign) SEL selector;
 @property (nonatomic, strong) DZButtonStyle* style;
 @property (nonatomic, strong) NSString* title;
+
 @end
 
 
 @interface EKSingleButtonElement : EKAdjustCellElement
 @property (nonatomic, strong) EKSingleButtonElementStatus* currentStatus;
+@property (nonatomic, assign) BOOL enable;
 @end

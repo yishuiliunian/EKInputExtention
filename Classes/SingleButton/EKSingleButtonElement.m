@@ -35,6 +35,8 @@
     }
     _viewClass = [EKSingleButtonCell class];
     self.cellHeight = 54.f;
+    _enable = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     return self;
 }
 - (EKSingleButtonCell*) cell
@@ -55,8 +57,14 @@
     [super willBeginHandleResponser:cell];
     [self.currentStatus.style decorateView:cell.button];
     [cell.button setTitle:self.currentStatus.title forState:UIControlStateNormal];
+    cell.button.enabled = _enable;
 }
 
+- (void) setEnable:(BOOL)enable
+{
+    _enable = enable;
+    self.cell.button.enabled = _enable;
+}
 - (void) didBeginHandleResponser:(EKSingleButtonCell *)cell
 {
     [super didBeginHandleResponser:cell];
