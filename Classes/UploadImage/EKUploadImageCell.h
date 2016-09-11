@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <ElementKit/ElementKit.h>
 #import "DZProgrameDefines.h"
-
+FOUNDATION_EXTERN CGSize EKUploadItemCollectionViewCellSize();
 @interface EKUploadImageCell : UITableViewCell
 DEFINE_PROPERTY_STRONG(UICollectionView*, collectionView);
 @end

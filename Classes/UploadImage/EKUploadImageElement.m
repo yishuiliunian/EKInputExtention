@@ -49,6 +49,21 @@
     return (EKUploadImageCell*)self.uiEventPool;
 }
 
+- (double) cellHeight
+{
+    CGSize size = EKUploadItemCollectionViewCellSize();
+    int count = self.allUploadedImageURLS.count;
+    if (count < _maxImageCount) {
+        count+= 1;
+    }
+    int row = MAX(1, ceil(count/3.0));
+    double height = size.height * row;
+    height+=10;
+    if (row > 1) {
+        height += 5* (row- 1);
+    }
+    return height;
+}
 - (NSArray*) allUploadedImageURLS
 {
   
@@ -233,7 +248,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
         _uploadedImageUrls = array;
     }
     _willRaplaceURL = nil;
-    [self.activeCell.collectionView reloadData];
+    [self reloadUIWithAnimation:UITableViewRowAnimationNone];
 }
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {

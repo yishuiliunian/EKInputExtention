@@ -42,6 +42,8 @@
     return self;
 }
 
+
+
 - (void) willBeginHandleResponser:(EKCenterImageViewCell *)cell
 {
     [super willBeginHandleResponser:cell];
