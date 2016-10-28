@@ -11,7 +11,7 @@
 #import "DZProgrameDefines.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-
+#import "UIImage+FixAppearance.h"
 @interface EKCenterUploadImageElement ()
 @end
 
@@ -116,6 +116,7 @@ INIT_DZ_EXTERN_STRING(kDZPICFromCamera,拍照 )
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage* image = info[UIImagePickerControllerOriginalImage];
+    image = [image fixAppearance];
     if (self.photoTweak) {
         RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:image];
         imageCropVC.delegate = self;

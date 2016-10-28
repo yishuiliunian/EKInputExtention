@@ -12,6 +12,7 @@
 #import "EKUploadItemCollectionViewCell.h"
 #import "MWPhotoBrowser.h"
 #import <QBPopupMenu.h>
+#import "UIImage+FixAppearance.h"
 
 @interface EKUploadImageElement () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -253,6 +254,7 @@ INIT_DZ_EXTERN_STRING(kCYPICFromCamera,拍照 )
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage* image = info[UIImagePickerControllerOriginalImage];
+    image = [image fixAppearance];
     [picker dismissViewControllerAnimated:YES completion:^{
         _showingCamera = NO;
     }];
