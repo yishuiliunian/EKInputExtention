@@ -12,7 +12,7 @@
 #import "EKUploadItemCollectionViewCell.h"
 #import "MWPhotoBrowser.h"
 #import <QBPopupMenu.h>
-#import "UIImage+FixAppearance.h"
+#import <DZFixImage/DZFixImage.h>
 
 @interface EKUploadImageElement () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {

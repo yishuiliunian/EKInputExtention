@@ -7,7 +7,6 @@
 //
 
 #import "EKUploadItemCollectionViewCell.h"
-#import "QBPopupMenu.h"
 
 @implementation EKUploadItemCollectionViewCell
 - (instancetype) initWithFrame:(CGRect)frame

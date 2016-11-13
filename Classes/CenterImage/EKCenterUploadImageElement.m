@@ -10,8 +10,7 @@
 #import "EKCenterImageViewCell.h"
 #import "DZProgrameDefines.h"
 #import <SVProgressHUD/SVProgressHUD.h>
-
-#import "UIImage+FixAppearance.h"
+#import <DZFixImage/DZFixImage.h>
 @interface EKCenterUploadImageElement ()
 @end
 
