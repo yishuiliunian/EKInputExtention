@@ -10,7 +10,6 @@
 #import "EKUploadImageElement.h"
 #import "EKUploadImageCell.h"
 #import "EKUploadItemCollectionViewCell.h"
-#import "MWPhotoBrowser.h"
 #import <QBPopupMenu.h>
 #import <DZFixImage/DZFixImage.h>
 
