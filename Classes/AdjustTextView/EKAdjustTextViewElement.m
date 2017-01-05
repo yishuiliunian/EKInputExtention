@@ -46,6 +46,12 @@
     self.cellHeight = size.height + 20;
 }
 
+- (void)setText:(NSString *)text {
+    _text = text;
+    [self calLayout];
+    [self reloadUIWithAnimation:UITableViewRowAnimationNone];
+}
+
 
 - (void) layoutCell:(EKAdjustTextViewCell *)cell
 {

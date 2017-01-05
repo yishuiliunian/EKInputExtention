@@ -11,6 +11,7 @@
 
 @interface EKAdjustTextViewElement : EKAdjustCellElement
 @property (nonatomic, strong) UIFont* font;
+@property  (nonatomic, strong) NSString* text;
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype) init NS_UNAVAILABLE;
 - (instancetype) initWithText:(NSString *)text font:(UIFont*)font NS_DESIGNATED_INITIALIZER;
